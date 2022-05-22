@@ -1,0 +1,21 @@
+compatibility_date = "2022-05-22"
+main = "src/index.ts"
+name = "remix-cloudflare-template"
+
+workers_dev = true
+
+[site]
+bucket = "../remix-app/public"
+
+[env.dev]
+vars = {SESSION_SECRET = "should-be-secure-in-prod"}
+
+[env.dev.durable_objects]
+bindings = [
+  {name = "COUNTER", class_name = "CounterDurableObject"},
+]
+
+[durable_objects]
+bindings = [
+  {name = "COUNTER", class_name = "CounterDurableObject"},
+]

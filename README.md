@@ -1,6 +1,6 @@
-# Turborepo starter with npm
+# Remix + Cloudflare Workers starter with Turborepo
 
-This is an official starter turborepo.
+Starter to get going with Remix and Cloudflare Workers
 
 ## What's inside?
 

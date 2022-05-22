@@ -1,24 +1,24 @@
 {
-  "name": "turborepo-basic-shared",
+  "name": "remix-cloudflare-template",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
-    "apps/*",
+    "config/*",
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "build": "npx --yes turbo run build",
+    "dev": "npx --yes turbo run dev --parallel",
+    "lint": "npx --yes turbo run lint",
+    "typecheck": "npx --yes turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\""
   },
   "devDependencies": {
     "prettier": "latest",
     "turbo": "latest"
   },
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
-  },
-  "packageManager": "npm@7.22.0"
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  }
 }
