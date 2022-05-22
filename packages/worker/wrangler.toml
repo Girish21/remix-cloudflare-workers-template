@@ -19,3 +19,7 @@ bindings = [
 bindings = [
   {name = "COUNTER", class_name = "CounterDurableObject"},
 ]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["CounterDurableObject"]
