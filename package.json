@@ -11,7 +11,7 @@
     "dev": "npx --yes turbo run dev --parallel",
     "lint": "npx --yes turbo run lint",
     "typecheck": "npx --yes turbo run typecheck",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,yml}\""
   },
   "devDependencies": {
     "prettier": "latest",

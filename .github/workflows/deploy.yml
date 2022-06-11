@@ -1,0 +1,30 @@
+name: 🕊 Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    if: github.repository == 'Girish21/remix-cloudflare-workers-template'
+    runs-on: ubuntu-latest
+    name: 🕊 Deploy
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📥 Install deps
+        uses: bahmutov/npm-install@v1
+
+      - name: 📦 Build
+        run: npm run build
+
+      - name: 🚀 Publish
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: 'packages/worker'
+          command: publish
