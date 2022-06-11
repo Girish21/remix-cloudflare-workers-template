@@ -70,7 +70,7 @@ Durable Objects are only available with a Workers paid subscription. However, yo
 
 This starter template comes with a simple DO implementation to keep track of the number of times the root loader is invoked.
 
-If you're starting with DO and not sure what it is, go through the official docs on [Durable Objects](https://remix.run/docs/en/v1/api/conventions#page-context-in-meta-function) will be a good start!
+If you're starting with DO and not sure what it is, go through the official docs on [Durable Objects](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/) will be a good start!
 
 ## Worker KV 📒
 
