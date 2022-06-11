@@ -15,7 +15,7 @@ This turborepo uses [npm](https://www.npmjs.com/) as a package manager. It inclu
 - `worker`: a [Worker](https://developers.cloudflare.com/workers) handler function
 - `cloudflare-env`: types for Cloudflare environement variables
 - `eslint-config-custom`: `eslint` configurations (includes `@remix-run/eslint-config` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+- `tsconfig`: `tsconfig.json` used throughout the monorepo
 
 ## Getting Started 🪄
 
