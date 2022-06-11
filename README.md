@@ -74,8 +74,8 @@ If you're starting with DO and not sure what it is, go through the official docs
 
 ## Worker KV 📒
 
-KV [docs](https://developers.cloudflare.com/workers/runtime-apis/kv/).
-Wrangler KV CLI [docs](https://developers.cloudflare.com/workers/wrangler/workers-kv/)
+- [KV](https://developers.cloudflare.com/workers/runtime-apis/kv/).
+- [Wrangler KV CLI](https://developers.cloudflare.com/workers/wrangler/workers-kv/)
 
 This template does not come with a KV namespace attached to it. However, you can create one using the Wrangler CLI.
 
