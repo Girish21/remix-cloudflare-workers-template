@@ -70,7 +70,118 @@ Durable Objects are only available with a Workers paid subscription. However, yo
 
 This starter template comes with a simple DO implementation to keep track of the number of times the root loader is invoked.
 
-If you're starting with DO and not sure what it is, go through the official docs on [Durable Objects](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/) will be a good start!
+If you're starting with DO and not sure what it is, go through the official docs on [Durable Objects](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/) will be a good start! And checkout [using durable objects](https://developers.cloudflare.com/workers/learning/using-durable-objects/) for more applications of DO.
+
+### Defining a DO Class
+
+To create a new DO class, create a new directory inside `packages`. Create four files,
+
+1. `package.json`
+
+   ```json
+   {
+     "name": "<DO name>",
+     "version": "0.0.0",
+     "license": "MIT",
+     "main": "index.ts",
+     "types": "index.ts",
+     "scripts": {
+       "lint": "eslint .",
+       "typecheck": "tsc -b"
+     },
+     "devDependencies": {
+       "@cloudflare/workers-types": "^3.10.0",
+       "eslint": "^8.15.0",
+       "eslint-config-custom": "*",
+       "tsconfig": "*",
+       "typescript": "^4.6.4"
+     }
+   }
+   ```
+
+2. `tsconfig.json`
+
+   ```json
+   {
+     "$schema": "https://json.schemastore.org/tsconfig",
+     "extends": "tsconfig/base.json",
+     "compilerOptions": {
+       "target": "ES2019",
+       "types": ["@cloudflare/workers-types"],
+       "allowJs": true,
+       "skipLibCheck": true,
+       "strict": true,
+       "forceConsistentCasingInFileNames": true,
+       "noEmit": true,
+       "incremental": true,
+       "esModuleInterop": true,
+       "module": "esnext",
+       "resolveJsonModule": true,
+       "isolatedModules": true,
+       "moduleResolution": "node"
+     },
+     "include": ["**/*.ts"],
+     "exclude": ["node_modules"]
+   }
+   ```
+
+3. `eslintrc.js`
+
+   ```js
+   module.exports = {
+     root: true,
+     extends: ['custom'],
+   }
+   ```
+
+4. `index.ts`
+   Define your Durable Object class here.
+
+To define a DO class, check out the [docs](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/#durable-object-class-definition).
+
+To include the DO class into the worker, we have to add the new DO package as a `dependendency` of the [`worker`](packages/worker/package.json). Then we need to create a binding for the DO in the configuration file [`wrangler.toml`](packages/worker/wrangler.toml).
+
+```toml
+[durable_objects]
+bindings = [
+  {name = "<DO_BINDING_NAME>", class_name = "<DO_CLASS_NAME>"},
+]
+
+[env.dev.durable_objects]
+bindings = [
+  {name = "<DO_BINDING_NAME>", class_name = "<DO_CLASS_NAME>"},
+]
+```
+
+We must create a [migration](https://developers.cloudflare.com/workers/learning/using-durable-objects/#durable-object-migrations-in-wranglertoml) to register the DO in the configuration file.
+
+```toml
+[[migrations]]
+tag = "v<RUNNING_TAG_ID>"
+new_classes = ["<DO_CLASS_NAME>"]
+```
+
+More info about uploading a DO [here](https://developers.cloudflare.com/workers/learning/using-durable-objects/#uploading-a-durable-object-worker).
+
+The DO binding will be available in the data functions (`loader`/`action`) through the `context` argument. Types for the `context` can be added at [cloudflare-env](./config/cloudflare-env/index.d.ts). To add a type for a newly created DO, we have to add the following to the `.d.ts` file
+
+```ts
+<DO_BINDING_NAME>: DurableObjectNamespace
+```
+
+Now we can access the DO binding from the data function through the `context`.
+
+```ts
+export let loader: LoaderFunction = ({ context }) => {
+  context.MY_DO
+  //        ^ Will have proper type definitions
+  return null
+}
+```
+
+### Deleting a DO
+
+It requires a migration to delete a DO. More info [here](https://developers.cloudflare.com/workers/learning/using-durable-objects/#durable-object-migrations-in-wranglertoml)
 
 ## Worker KV 📒
 
@@ -108,7 +219,7 @@ kv_namespaces = [
 
 **Note**: We need to add the `preview_id` key to the configuration file along with the `id` key with the same value.
 
-The bounded KV will be available in the `loader`/`action` via the `context` argument passed to the functions. We define types for the `context` at [cloudflare-env](./config/cloudflare-env/index.d.ts). To add types for a newly bounded KV, we just have to add the following to the `.d.ts` file
+The bounded KV will be available in the `loader`/`action` via the `context` argument passed to the functions. We define types for the `context` at [cloudflare-env](./config/cloudflare-env/index.d.ts). To add types for a newly bounded KV, we have to add the following to the `.d.ts` file
 
 ```ts
 MY_KV: KVNamespace
@@ -171,7 +282,9 @@ npx turbo link
 - [Workers](https://developers.cloudflare.com/workers/)
 - [KV](https://developers.cloudflare.com/workers/runtime-apis/kv/)
 - [Durable Objects](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/)
+- [Usage and Practical applications of DO](https://developers.cloudflare.com/workers/learning/using-durable-objects/)
 - [Wrangler](https://developers.cloudflare.com/workers/wrangler/)
+- [Wrangler Configuration file reference](https://developers.cloudflare.com/workers/wrangler/configuration/)
 - [Wrangler KV](https://developers.cloudflare.com/workers/wrangler/workers-kv/)
 
 ### Turborepo
