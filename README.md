@@ -108,6 +108,22 @@ kv_namespaces = [
 
 **Note**: We need to add the `preview_id` key to the configuration file along with the `id` key with the same value.
 
+The bounded KV will be available in the `loader`/`action` via the `context` argument passed to the functions. We define types for the `context` at [cloudflare-env](./config/cloudflare-env/index.d.ts). To add types for a newly bounded KV, we just have to add the following to the `.d.ts` file
+
+```ts
+MY_KV: KVNamespace
+```
+
+Now we can access the KV namespace from the data function through the `context`.
+
+```ts
+export let loader: LoaderFunction = ({ context }) => {
+  context.MY_KV
+  //        ^ Will have proper type definitions
+  return null
+}
+```
+
 ## Turbo Setup ✨
 
 This repository is used in the `npx create-turbo@latest` command and selected when choosing which package manager you wish to use with your monorepo (npm).
