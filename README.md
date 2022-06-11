@@ -31,7 +31,7 @@ After installation, log in to our Cloudflare account from the CLI.
 wrangler login
 ```
 
-Next, we have to add Cloudflare Account ID in the [`wrangler.toml`](./packages/worker/wrangler.toml). You can get the Account ID by visiting the [`Workers` Dashboard](https://dash.cloudflare.com).
+Next, we have to add Cloudflare Account ID in the [`wrangler.toml`](./packages/worker/wrangler.toml). You can get the Account ID by visiting the [Workers Dashboard](https://dash.cloudflare.com).
 
 ```toml
 account_id = "xxx"
