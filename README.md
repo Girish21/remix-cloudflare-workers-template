@@ -19,8 +19,6 @@ This turborepo uses [npm](https://www.npmjs.com/) as a package manager. It inclu
 
 ## Getting Started 🪄
 
-Durable Objects are only available with a Workers paid subscription. However, you can upgrade to the paid plan from the [Dashboard](https://dash.cloudflare.com).
-
 Let's setup `wrangler` CLI [instalation](https://github.com/cloudflare/wrangler#installation) (wrangler requires a minimum Node version of `16`)
 
 ```sh
@@ -67,6 +65,8 @@ git push
 ```
 
 ## Durable Objects 🔥
+
+Durable Objects are only available with a Workers paid subscription. However, you can upgrade to the paid plan from the [Dashboard](https://dash.cloudflare.com).
 
 This starter template comes with a simple DO implementation to keep track of the number of times the root loader is invoked.
 
