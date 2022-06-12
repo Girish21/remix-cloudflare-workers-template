@@ -99,9 +99,11 @@ To include the DO class into the worker, we have to add the new DO package as a 
 bindings = [
   {name = "<DO_BINDING_NAME>", class_name = "<DO_CLASS_NAME>"},
 ]
+```
 
 For development add the following to [`wrangler.dev.toml`](packages/worker/wrangler.dev.toml)
 
+```toml
 [env.dev.durable_objects]
 bindings = [
   {name = "<DO_BINDING_NAME>", class_name = "<DO_CLASS_NAME>"},
