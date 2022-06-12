@@ -239,6 +239,56 @@ export let loader: LoaderFunction = ({ context }) => {
 }
 ```
 
+## Environment Variables (Secrets) 🔐
+
+### Adding Worker Environment Variables
+
+1. `cd packages/worker`
+2. Inside the `worker` package directory, run `wrangler secret put <VARIABLE_NAME>` to add a secret variable to the worker project.
+3. You will see the added environment variable shown under the `Settings` section in the Cloudflare Worker project dashboard.
+
+Example:
+
+```shell
+wrangler secret put SESSION_SECRET
+# There will be a prompt for you to type or paste the value into the terminal.
+# After hitting `Enter` the key-value pair will be uploaded to the worker.
+```
+
+Now, we can access SESSION_SECRET via `context.env.SESSION_SECRET` in loader and action functions in the production environment.
+
+### Setting Worker Local Environment Variables
+
+In this template, you can set local environment variables in one of these two ways.
+
+#### Setting variables in wrangler.dev.toml
+
+This is the default way to consume local environment variables by this template.
+
+If the dev script uses `wrangler dev` with `--config wrangler.dev.toml` option, wrangler will consume the `wrangler.dev.toml` which is ignored by Git.
+
+So, we can put any secret we do not want to commit into this config file.
+
+1. Create a `wrangler.dev.toml` inside `packages/wrangler` directory.
+
+2. Then set variables based on the example in the `packages/wrangler/wrangler.example.toml`.
+
+#### Using .dev.vars
+
+Instead of `.env`, wrangler consumes `.dev.vars`.
+
+Just create a file called `.dev.vars` in `packages/worker` package directory with `NAME = VALUE` pairs just like a typical `.env` file.
+
+Don't commit the `.dev.vars` into the git repo.
+
+Example:
+
+```
+SESSION_SECRET="should-be-secure-in-prod"
+```
+
+With one of these two methods, we can access `SESSION_SECRET` via `context.env.SESSION_SECRET` in loader and action functions in development environment.
+
 ## Turbo Setup ✨
 
 This repository is used in the `npx create-turbo@latest` command and selected when choosing which package manager you wish to use with your monorepo (npm).
