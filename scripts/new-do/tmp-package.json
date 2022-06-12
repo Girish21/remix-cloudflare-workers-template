@@ -1,0 +1,18 @@
+{
+  "name": "new-do",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.10.0",
+    "eslint": "^8.15.0",
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "typescript": "^4.6.4"
+  }
+}

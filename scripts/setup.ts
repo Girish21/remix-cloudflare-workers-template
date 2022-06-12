@@ -70,6 +70,14 @@ async function run() {
   )
 
   console.error('\n🎉 Done!')
+
+  console.error('\nAvailable commands:')
+  console.error('npm run dev - Starts the development server')
+  console.error('npm run build - Builds the monorepo')
+  console.error('npm run lint - Lints the monorepo')
+  console.error('npm run format - Formats the monorepo')
+  console.error('npm run typecheck - Typechecks the monorepo')
+  console.error('npm run new:do - Creates a new Durable Object class file')
 }
 
 run().catch(e => {

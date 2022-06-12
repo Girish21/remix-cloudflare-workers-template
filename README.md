@@ -34,7 +34,7 @@ wrangler login
 Let's install the dependencies.
 
 ```sh
-npm i
+npm install
 ```
 
 Now we can set up the project.
@@ -59,9 +59,9 @@ git push
 ### Recap 🌀
 
 ```sh
-npm i @cloudflare/wrangler -g
+npm install @cloudflare/wrangler -g
 wrangler login
-npm i
+npm install
 npm run setup
 # configure CF_API_TOKEN action secret
 git add -A -m "<message>"
@@ -76,70 +76,19 @@ This starter template comes with a simple DO implementation to keep track of the
 
 If you're starting with DO and not sure what it is, go through the official docs on [Durable Objects](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/) will be a good start! And checkout [using durable objects](https://developers.cloudflare.com/workers/learning/using-durable-objects/) for more applications of DO.
 
-### Defining a DO Class
+### Defining a Durable Object
 
-To create a new DO class, create a new directory inside `packages`. Create four files,
+This template comes with a script to create the boilerplate for a new Durable Object class.
 
-1. `package.json`
+```sh
+npm run new:do
+```
 
-   ```json
-   {
-     "name": "<DO name>",
-     "version": "0.0.0",
-     "license": "MIT",
-     "main": "index.ts",
-     "types": "index.ts",
-     "scripts": {
-       "lint": "eslint .",
-       "typecheck": "tsc -b"
-     },
-     "devDependencies": {
-       "@cloudflare/workers-types": "^3.10.0",
-       "eslint": "^8.15.0",
-       "eslint-config-custom": "*",
-       "tsconfig": "*",
-       "typescript": "^4.6.4"
-     }
-   }
-   ```
+The script will have instructions to initialise the DO with the worker. Don't forget to follow them!
 
-2. `tsconfig.json`
+#### More information on DO
 
-   ```json
-   {
-     "$schema": "https://json.schemastore.org/tsconfig",
-     "extends": "tsconfig/base.json",
-     "compilerOptions": {
-       "target": "ES2019",
-       "types": ["@cloudflare/workers-types"],
-       "allowJs": true,
-       "skipLibCheck": true,
-       "strict": true,
-       "forceConsistentCasingInFileNames": true,
-       "noEmit": true,
-       "incremental": true,
-       "esModuleInterop": true,
-       "module": "esnext",
-       "resolveJsonModule": true,
-       "isolatedModules": true,
-       "moduleResolution": "node"
-     },
-     "include": ["**/*.ts"],
-     "exclude": ["node_modules"]
-   }
-   ```
-
-3. `eslintrc.js`
-
-   ```js
-   module.exports = {
-     root: true,
-     extends: ['custom'],
-   }
-   ```
-
-4. `index.ts`
-   Define your Durable Object class here.
+> You can skip this section if you have used the script to generate the DO class. Continue for more information on DO :)
 
 To define a DO class, check out the [docs](https://developers.cloudflare.com/workers/runtime-apis/durable-objects/#durable-object-class-definition).
 
@@ -150,6 +99,8 @@ To include the DO class into the worker, we have to add the new DO package as a 
 bindings = [
   {name = "<DO_BINDING_NAME>", class_name = "<DO_CLASS_NAME>"},
 ]
+
+For development add the following to [`wrangler.dev.toml`](packages/worker/wrangler.dev.toml)
 
 [env.dev.durable_objects]
 bindings = [
