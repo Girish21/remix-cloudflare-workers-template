@@ -159,13 +159,15 @@ kv_namespaces = [
 ]
 ```
 
-We must add this above the `[site]` block in the `toml` file. We have added the KV namespace binding for the production environment, but we also need a namespace for `dev`. We can do that by running.
+We must add this above the `[site]` block in the `wrangler.toml` file.
+
+We have added the KV namespace binding for the production environment, but we also need a namespace for `dev`. We can do that by creating a new namespace for `dev`.
 
 ```sh
 wrangler kv:namespace create "MY_KV" --preview
 ```
 
-This will generate a namespace for the `dev` environment, and we must add this below the `[env.dev]` block in the configuration file.
+This will generate a namespace for the `dev` environment, and we must add this below the `[env.dev]` block in the dev configuration file `wrangler.dev.toml`.
 
 ```toml
 [env.dev]
@@ -174,7 +176,7 @@ kv_namespaces = [
 ]
 ```
 
-**Note**: We need to add the `preview_id` key to the configuration file along with the `id` key with the same value.
+**Note**: We need to add the `preview_id` key to the configuration file along with the `id` key with the same value (ref: [stackoverflow](https://stackoverflow.com/a/71898353/17459282)).
 
 The bounded KV will be available in the `loader`/`action` via the `context` argument passed to the functions. We define types for the `context` at [cloudflare-env](./config/cloudflare-env/index.d.ts). To add types for a newly bounded KV, we have to add the following to the `.d.ts` file
 
