@@ -196,51 +196,37 @@ export let loader: LoaderFunction = ({ context }) => {
 
 ### Adding Worker Environment Variables
 
-1. `cd packages/worker`
-2. Inside the `worker` package directory, run `wrangler secret put <VARIABLE_NAME>` to add a secret variable to the worker project.
-3. You will see the added environment variable shown under the `Settings` section in the Cloudflare Worker project dashboard.
+You must run `wrangler` commands from a directory which contains the `wrangler.toml` file. Either we can `cd` into the worker directory present at `packages/worker`, or we can specify the path to the configuration file in the CLI.
 
-Example:
+To set a worker `secret`, we can
 
-```shell
-wrangler secret put SESSION_SECRET
-# There will be a prompt for you to type or paste the value into the terminal.
-# After hitting `Enter` the key-value pair will be uploaded to the worker.
+```sh
+cd packages/worker
+wrangler secret put <SECRET_NAME>
 ```
 
-Now, we can access SESSION_SECRET via `context.env.SESSION_SECRET` in loader and action functions in the production environment.
+or,
 
-### Setting Worker Local Environment Variables
-
-In this template, you can set local environment variables in one of these two ways.
-
-#### Setting variables in wrangler.dev.toml
-
-This is the default way to consume local environment variables by this template.
-
-If the dev script uses `wrangler dev` with `--config wrangler.dev.toml` option, wrangler will consume the `wrangler.dev.toml` which is ignored by Git.
-
-So, we can put any secret we do not want to commit into this config file.
-
-1. Create a `wrangler.dev.toml` inside `packages/wrangler` directory.
-
-2. Then set variables based on the example in the `packages/wrangler/wrangler.example.toml`.
-
-#### Using .dev.vars
-
-Instead of `.env`, wrangler consumes `.dev.vars`.
-
-Just create a file called `.dev.vars` in `packages/worker` package directory with `NAME = VALUE` pairs just like a typical `.env` file.
-
-Don't commit the `.dev.vars` into the git repo.
-
-Example:
-
-```
-SESSION_SECRET="should-be-secure-in-prod"
+```sh
+wrangler secret -c packages/worker/wrangler.toml
 ```
 
-With one of these two methods, we can access `SESSION_SECRET` via `context.env.SESSION_SECRET` in loader and action functions in development environment.
+Like DO/KV binding, the Env variables will be passed to the data functions via the `context` argument. But we have only configured the production worker with the secret. So let's configure the local environment with the secret.
+
+When we ran `npm run setup`, the CLI would have created `packages/worker/wrangler.dev.toml`. And the configuration file should have a `vars` key under the `[env.dev]` table. So we can add the new secret there.
+
+```toml
+[env.dev]
+vars = {SECRET_KEY = "<value>"}
+```
+
+One last thing to do is add the type definition for the Env var at `config/cloudflare-env/index.d.ts`.
+
+```ts
+SECRET_KEY: string
+```
+
+Now, we can access SESSION_SECRET via `context.env.SESSION_SECRET` in the data functions inside our Remix app.
 
 ## Turbo Setup ✨
 
