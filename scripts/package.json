@@ -1,0 +1,22 @@
+{
+  "name": "project-scripts",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "@ltd/j-toml": "^1.30.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/inquirer": "^8.2.1",
+    "@types/lodash.kebabcase": "^4.1.7",
+    "eslint": "^8.15.0",
+    "eslint-config-custom": "*",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.4",
+    "lodash.kebabcase": "^4.1.1",
+    "tsconfig": "*",
+    "typescript": "^4.6.4"
+  }
+}

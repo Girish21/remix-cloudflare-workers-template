@@ -32,3 +32,6 @@ yarn-error.log*
 # turbo
 .turbo
 tsconfig.tsbuildinfo
+
+# Cloudflare
+wrangler.dev.toml

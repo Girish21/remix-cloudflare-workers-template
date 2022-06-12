@@ -4,16 +4,20 @@
   "private": true,
   "workspaces": [
     "config/*",
-    "packages/*"
+    "packages/*",
+    "scripts"
   ],
   "scripts": {
     "build": "npx --yes turbo run build",
     "dev": "npx --yes turbo run dev --parallel",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,yml}\"",
     "lint": "npx --yes turbo run lint",
-    "typecheck": "npx --yes turbo run typecheck",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,yml}\""
+    "new:do": "node -r esbuild-register scripts/new-do.ts",
+    "setup": "node -r esbuild-register scripts/setup.ts",
+    "typecheck": "npx --yes turbo run typecheck"
   },
   "devDependencies": {
+    "esbuild-register": "^3.3.3",
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "^0.1.11",
     "turbo": "latest"
