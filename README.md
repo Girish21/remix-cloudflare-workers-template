@@ -25,23 +25,27 @@ Let's setup `wrangler` CLI [instalation](https://github.com/cloudflare/wrangler#
 npm i @cloudflare/wrangler -g
 ```
 
-After installation, log in to our Cloudflare account from the CLI.
+After installation, log in to your Cloudflare account from the CLI.
 
 ```sh
 wrangler login
 ```
 
-Next, we have to add Cloudflare Account ID in the [`wrangler.toml`](./packages/worker/wrangler.toml). You can get the Account ID by visiting the [Workers Dashboard](https://dash.cloudflare.com).
+Let's install the dependencies.
 
-```toml
-account_id = "xxx"
+```sh
+npm i
 ```
 
-Also, remember to change the worker's name while we're here.
+Now we can set up the project.
 
-```toml
-name = "remix-worker" # can be any name
+```sh
+npm run setup
 ```
+
+The setup script will ask for your worker's name. It can be any name. And then, we also need to add the Account ID, which you can find by visiting the Cloudflare [Dashboard](https://dash.cloudflare.com).
+
+You can add the Worker name and the Account ID later to the [`wrangler.toml](packages/worker/wrangler.toml).
 
 That's all we're ready to push to prod! 🚀
 
@@ -57,8 +61,8 @@ git push
 ```sh
 npm i @cloudflare/wrangler -g
 wrangler login
-# update wrangler.toml with the Account ID
-# update Worker name
+npm i
+npm run setup
 # configure CF_API_TOKEN action secret
 git add -A -m "<message>"
 git push
