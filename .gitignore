@@ -36,3 +36,4 @@ tsconfig.tsbuildinfo
 # Cloudflare
 wrangler.dev.toml
 .dev.vars
+wrangler-local-state
