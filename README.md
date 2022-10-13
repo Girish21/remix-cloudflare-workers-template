@@ -49,7 +49,15 @@ You can add the Worker name and the Account ID later to the [`wrangler.toml](pac
 
 That's all we're ready to push to prod! 🚀
 
-Before pushing to the worker via GitHub action, we have to configure the `CF_API_TOKEN` secret in GitHub. We can generate an API Token from [here](https://dash.cloudflare.com/profile/api-tokens). When presented with the list of templates to choose from, select the "Edit Cloudflare Workers" option. This template should have the necessary permissions to push a Worker from GitHub. Now we can commit the changes made to `wrangler.toml` and push the changes.
+Before pushing to the worker via GitHub action, we have to configure the `CF_API_TOKEN` secret in GitHub. We can generate an API Token from [here](https://dash.cloudflare.com/profile/api-tokens). When presented with the list of templates to choose from, select the "Edit Cloudflare Workers" option. This template should have the necessary permissions to push a Worker from GitHub. 
+
+You can delete the following line from `.github/deploy.yml` file or replace it with your own repo address.
+
+```yml
+if: github.repository == 'Girish21/remix-cloudflare-workers-template'
+```
+
+Now we can commit the changes made to `wrangler.toml` and push the changes.
 
 ```sh
 git commit -am "<message>"
