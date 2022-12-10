@@ -10,7 +10,7 @@ declare var process: {
 }
 
 declare module '@remix-run/cloudflare' {
-  import type { DataFunctionArgs as RemixDataFunctionArgs } from '@remix-run/cloudflare'
+  import type { DataFunctionArgs as RemixDataFunctionArgs } from '@remix-run/cloudflare/dist/index'
   export * from '@remix-run/cloudflare/dist/index'
 
   export interface DataFunctionArgs
