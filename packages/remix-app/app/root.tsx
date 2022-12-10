@@ -1,6 +1,6 @@
 import type {
+  DataFunctionArgs,
   LinksFunction,
-  LoaderFunction,
   MetaFunction,
 } from '@remix-run/cloudflare'
 import { json } from '@remix-run/cloudflare'
@@ -24,17 +24,17 @@ export let meta: MetaFunction = () => ({
 
 export let links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
 
-export let loader: LoaderFunction = async ({ context }) => {
+export let loader = async ({ context }: DataFunctionArgs) => {
   let id = context.env.COUNTER.idFromName('root')
   let object = context.env.COUNTER.get(id)
   let doResponse = await object.fetch('https://../increment')
   let count = Number(await doResponse.text())
 
-  return json<LoaderData>({ count })
+  return json({ count })
 }
 
 export default function App() {
-  let loaderData = useLoaderData<LoaderData>()
+  let loaderData = useLoaderData<typeof loader>()
 
   return (
     <html lang='en'>
@@ -51,8 +51,4 @@ export default function App() {
       </body>
     </html>
   )
-}
-
-type LoaderData = {
-  count: number
 }
