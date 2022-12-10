@@ -1,4 +1,5 @@
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
+import type { AppLoadContext } from '@remix-run/cloudflare'
 import { createRequestHandler } from '@remix-run/cloudflare'
 import * as build from 'remix-app'
 import manifestJSON from '__STATIC_CONTENT_MANIFEST'
@@ -38,7 +39,7 @@ export default {
     } catch (error) {}
 
     try {
-      let loadContext: LoadContext = { env }
+      let loadContext: AppLoadContext = { env }
       return await handleRemixRequest(request, loadContext)
     } catch (error) {
       console.log(error)
