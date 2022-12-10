@@ -9,10 +9,10 @@
     "typecheck": "tsc -b"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^3.10.0",
-    "eslint": "^8.15.0",
+    "@cloudflare/workers-types": "^3.18.0",
+    "eslint": "^8.23.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
-    "typescript": "^4.6.4"
+    "typescript": "^4.9.4"
   }
 }
