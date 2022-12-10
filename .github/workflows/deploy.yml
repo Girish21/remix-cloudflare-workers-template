@@ -2,11 +2,11 @@ name: 🕊 Deploy
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
-    if: github.repository == 'Girish21/remix-cloudflare-workers-template'
+    if: github.repository != 'Girish21/remix-cloudflare-workers-template'
     runs-on: ubuntu-latest
     name: 🕊 Deploy
     steps:
