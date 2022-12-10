@@ -1,5 +1,6 @@
-compatibility_date = "2022-05-22"
 main = "src/index.ts"
+compatibility_date = "2022-11-17"
+compatibility_flags = ["streams_enable_constructors"]
 
 workers_dev = true
 
