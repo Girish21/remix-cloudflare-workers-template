@@ -44,7 +44,7 @@ export default function App() {
       </head>
       <body>
         <Outlet />
-        <p className='text-xl'>Invocatoins: {loaderData.count}</p>
+        <p className='text-xl'>Invocations: {loaderData.count}</p>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
