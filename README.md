@@ -13,7 +13,7 @@ This turborepo uses [npm](https://www.npmjs.com/) as a package manager. It inclu
 - `counter-do`: a [Durable Object](https://developers.cloudflare.com/workers/runtime-apis/durable-objects) class for managing the count state
 - `remix-app`: a [Remix](https://remix.run) app (with Tailwind)
 - `worker`: a [Worker](https://developers.cloudflare.com/workers) handler function
-- `cloudflare-env`: types for Cloudflare environement variables
+- `cloudflare-env`: types for Cloudflare environment variables
 - `eslint-config-custom`: `eslint` configurations (includes `@remix-run/eslint-config` and `eslint-config-prettier`)
 - `tsconfig`: `tsconfig.json` used throughout the monorepo
 
