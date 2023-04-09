@@ -3,6 +3,8 @@ main = "src/index.ts"
 compatibility_date = "2022-11-17"
 compatibility_flags = ["streams_enable_constructors"]
 
+vars = {ENVIRONMENT = "production"}
+
 [site]
 bucket = "../remix-app/public"
 

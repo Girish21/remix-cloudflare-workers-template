@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@remix-run/eslint-config": "1.13.0",
+    "@remix-run/eslint-config": "^1.15.0",
     "eslint-config-prettier": "^8.5.0"
   },
   "publishConfig": {

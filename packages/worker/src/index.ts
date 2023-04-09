@@ -7,7 +7,7 @@ import manifestJSON from '__STATIC_CONTENT_MANIFEST'
 export { default as CounterDurableObject } from 'counter-do'
 
 let assetManifest = JSON.parse(manifestJSON)
-let handleRemixRequest = createRequestHandler(build, process.env.NODE_ENV)
+let handleRemixRequest: ReturnType<typeof createRequestHandler>
 
 export default {
   async fetch(
@@ -39,6 +39,9 @@ export default {
     } catch (error) {}
 
     try {
+      if (!handleRemixRequest) {
+        handleRemixRequest = createRequestHandler(build, env.ENVIRONMENT)
+      }
       let loadContext: AppLoadContext = { env }
       return await handleRemixRequest(request, loadContext)
     } catch (error) {
