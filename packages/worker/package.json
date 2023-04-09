@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "wrangler dev --config wrangler.dev.toml --env dev --local",
+    "dev": "wrangler dev --config wrangler.dev.toml --env dev --port 3000 --local",
     "lint": "eslint .",
     "typecheck": "tsc -b"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.2.0",
-    "@remix-run/cloudflare": "^1.8.2",
+    "@remix-run/cloudflare": "^1.15.0",
     "counter-do": "*",
     "remix-app": "*"
   },

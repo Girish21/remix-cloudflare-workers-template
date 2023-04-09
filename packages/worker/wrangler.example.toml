@@ -8,7 +8,7 @@ workers_dev = true
 bucket = "../remix-app/public"
 
 [env.dev]
-vars = {SESSION_SECRET = "should-be-secure-in-prod"}
+vars = {SESSION_SECRET = "should-be-secure-in-prod", ENVIRONMENT = "development"}
 
 [env.dev.durable_objects]
 bindings = [

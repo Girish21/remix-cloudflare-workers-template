@@ -2,7 +2,13 @@
  * @type {import('@remix-run/dev').AppConfig}
  */
 module.exports = {
-  serverBuildTarget: 'cloudflare-workers',
-  devServerBroadcastDelay: 1000,
   ignoredRouteFiles: ['**/.*'],
+  serverModuleFormat: 'esm',
+  serverDependenciesToBundle: ['@remix-run/react'],
+  future: {
+    unstable_dev: {
+      appServerPort: 3000,
+      rebuildPollIntervalMs: 500,
+    },
+  },
 }
